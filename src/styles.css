@@ -1,0 +1,149 @@
+html, body {
+    background-color: #2F4F30;
+    margin: 0;
+}
+.titulo {
+    text-align: center;
+    color: white;
+    background-color: #1f1f1f;
+    font-size: 30px;
+    padding: 20px;
+    box-shadow: 0px 2px 5px black;
+}
+.div-login {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+#login {
+    font-size: 20px;
+    width: fit-content;
+    position: absolute;
+    padding: 1%;
+    background-color: whitesmoke;
+    display: block;
+    top: 15%;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0px 2px 7px #1d1d1d;
+}
+label, .input{
+    margin-left: 1%;
+}
+input {
+    margin-top: 5%;
+    margin-left: 2%;
+    padding: 1%;
+    font-size: 15px;
+}
+#nombrejugador {
+    width: 94%;
+    margin-left: 0;
+}
+.hidden {
+    display: none;
+}
+.div-submit {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5%;
+}
+#confirmar {
+    background-color: #1d1d1d;
+    color: whitesmoke;
+    outline: none;
+    border: none;
+}
+#confirmar:hover {
+    background-color: #252525;
+}
+#confirmar:disabled {
+    background-color: whitesmoke;
+    color: grey;
+}
+#confirmar:disabled:hover {
+    background-color: whitesmoke;
+    color: grey;
+}
+button {
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+#btnPedir {
+    background-color: whitesmoke;
+    color: #1d1d1d;
+}
+#btnNuevo {
+    background-color: #1d1d1d;
+    color: whitesmoke;
+}
+#btnDetener {
+    background-color: whitesmoke;
+    color: #1d1d1d;
+}
+#btnNuevo:hover{
+    background-color: #252525;
+}
+#btnPedir:disabled, #btnDetener:disabled {
+    background-color: lightgrey;
+}
+.div-carta {
+    height: 147px;
+}
+.carta {
+    position: relative;
+    width: 95px;
+    margin-left: -60px;
+}
+.juego {
+    width: 100%;
+}
+.div-botones {
+    width: fit-content;
+    margin: 2% auto 0 auto;
+}
+.cartas-jugadores {
+    width: 98%;
+    margin: -0.5% auto 0 auto;
+    display: block;
+    /* border: solid black 1px; */
+    text-align: center;
+}
+small {
+    color: whitesmoke;
+}
+.red {
+    color: red;
+}
+.div-ganador {
+    font-family: 'Roboto', sans-serif;
+}
+.ganador {
+    width: fit-content;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    /* bottom: 0; */
+    padding: 2%;
+    margin: auto auto auto auto;
+    background-color:whitesmoke;
+    color: #1d1d1d;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0px 1px 40px 0px rgba(0,0,0,0.75);
+    text-align: center;
+}
+.span-nuevoJuego {
+    background-color: #1d1d1d;
+    color: whitesmoke;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
