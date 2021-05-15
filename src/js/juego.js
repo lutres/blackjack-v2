@@ -186,7 +186,7 @@ btnDetener.addEventListener('click', () => {
     
     } else {
 
-        alert(`${jugadorDetenidoHTML[turnoJugador].innerText} está detenido, por favor presiona "Detener" nuevamente para proceder con el siguiente turno (hazlo hasta dar con el siguiente turno que no esté detenido :) )`);
+        alert(`${listaJugadores.lista[turnoJugador].nombre} está detenido, por favor presiona "Detener" nuevamente para proceder con el siguiente turno (hazlo hasta dar con el siguiente turno que no esté detenido :) )`);
         
     }
 
@@ -196,7 +196,7 @@ btnDetener.addEventListener('click', () => {
                                                      : turnoJugador = 0;
 
     determinarGanador();
-                                                        
+
 })
 
 btnNuevo.addEventListener('click', () => {
