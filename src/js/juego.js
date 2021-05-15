@@ -186,7 +186,7 @@ btnDetener.addEventListener('click', () => {
     
     } else {
 
-        alert(`${listaJugadores.lista[turnoJugador].nombre} está detenido, por favor presiona "Detener" nuevamente para proceder con el siguiente turno (hazlo hasta dar con el siguiente turno que no esté detenido :) )`);
+        alert(`${listaJugadores.lista[turnoJugador].nombre} está detenido, por favor presiona "Detener" nuevamente para seguir con el juego (hazlo hasta dar con el siguiente turno que no esté detenido :) )`);
         
     }
 
