@@ -196,12 +196,12 @@ btnPedir.addEventListener('click', () => {
         
         if (listaJugadores.lista[0].puntos === 21) {
             
-            puntosHTML[jugador.turno].classList.add('red');
-            puntosHTML[jugador.turno].innerText = `¡${listaJugadores.lista[jugador.turno].puntos}!`
+            puntosHTML[0].classList.add('red');
+            puntosHTML[0].innerText = `¡${listaJugadores.lista[0].puntos}!`
 
         }
             
-        if (listaJugadores.lista[0].puntos > 21 || listaJugadores.lista[0].detenido === true) {
+        if (listaJugadores.lista[0].puntos > 21 || listaJugadores.lista[0].detenido === true || listaJugadores.lista[0].puntos === 21) {
 
            turnoComputadora(listaJugadores.lista[0].puntos);
           
