@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet">
     <title>Blackjack</title>
 </head>
 <body>
@@ -46,7 +48,7 @@
 
     <div class="juego">
         <div class="div-botones hidden">
-            <button id="btnNuevo" class="botones">Nuevo Juego</button>
+            <button class="btnNuevo" class="botones">Nuevo Juego</button>
             <button id="btnPedir" class="botones">Pedir carta</button>
             <button id="btnDetener" class="botones">Detener</button>
         </div>
@@ -58,9 +60,11 @@
 
     <div class="div-ganador hidden">
         <div class="ganador">
+            <input type="radio" id="cerrar-modal">
+            <label for="cerrar-modal" id="label-modal">X</label>
             <h1 class="h1ganador"></h1>
             <h2></h2>
-            <h4>Haz click en el botón <span class="span-nuevoJuego">Nuevo Juego</span> para comenzar otra partida</h4>
+            <h4>Haz click en el botón <button class="btnNuevo" id="btnNuevoFinal">Nuevo Juego</button> para comenzar otra partida</h4>
         </div>
     </div>
 

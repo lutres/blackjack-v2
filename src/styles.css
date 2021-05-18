@@ -11,7 +11,7 @@ html, body {
     box-shadow: 0px 2px 5px black;
 }
 .div-login {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Alegreya Sans', sans-serif;
     display: flex;
     justify-content: center;
 }
@@ -77,7 +77,7 @@ button {
     background-color: whitesmoke;
     color: #1d1d1d;
 }
-#btnNuevo {
+.btnNuevo {
     background-color: #1d1d1d;
     color: whitesmoke;
 }
@@ -85,7 +85,7 @@ button {
     background-color: whitesmoke;
     color: #1d1d1d;
 }
-#btnNuevo:hover{
+.btnNuevo:hover{
     background-color: #252525;
 }
 #btnPedir:disabled, #btnDetener:disabled {
@@ -101,6 +101,7 @@ button {
 }
 .juego {
     width: 100%;
+    font-family: 'Alegreya Sans', sans-serif;
 }
 .div-botones {
     width: fit-content;
@@ -120,7 +121,7 @@ small {
     color: red;
 }
 .div-ganador {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Alegreya Sans', sans-serif;
 }
 .ganador {
     width: fit-content;
@@ -138,12 +139,22 @@ small {
     box-shadow: 0px 1px 40px 0px rgba(0,0,0,0.75);
     text-align: center;
 }
-.span-nuevoJuego {
-    background-color: #1d1d1d;
-    color: whitesmoke;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-}
+#cerrar-modal + #label-modal {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    background: tomato;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    margin-bottom: 1%;
+    font-size: 75%;
+ }
+ #cerrar-modal {
+     display: none;
+ }

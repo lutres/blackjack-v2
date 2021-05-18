@@ -1,36 +1,40 @@
 import {listaJugadores } from "..";
+import { Computadora } from "../classes/jugador-class";
 const _ = require('underscore');
 
 const divCartasJugadores = document.querySelector('.cartas-jugadores'),
       divGanador         = document.querySelector('.div-ganador'),
       btnPedir           = document.querySelector('#btnPedir'),
       btnDetener         = document.querySelector('#btnDetener'),
-      btnNuevo           = document.querySelector('#btnNuevo');
+      btnNuevo           = document.querySelector('.btnNuevo'),
+      btnNuevoFinal      = document.querySelector('#btnNuevoFinal'),
+      btnCerrarModal        = document.querySelector('#cerrar-modal');
 
 let deck               = [],
     jugadoresDetenidos = 0,
-    turnoJugador       = 0;
+    turnoJugador       = 0,
+    computadora        = false;
 
 const tiposCartas      = ['C', 'D', 'H', 'S'],
       cartasEspeciales = ['A', 'J', 'Q', 'K'];
 
 export const aggJugadorHTML = () => {
 
-   for (let i = 0; i < listaJugadores.lista.length; i++) {
+    for (let i = 0; i < listaJugadores.lista.length; i++) {
        
-    divCartasJugadores.innerHTML += 
-    `
-    <div class="jugador">
-        <div class="div-informacion">
-            <h1>${listaJugadores.lista[i].nombre} -  <small>${listaJugadores.lista[i].puntos}</small></h1>
+        divCartasJugadores.innerHTML += 
+        `
+        <div class="jugador">
+            <div class="div-informacion">
+                <h1>${listaJugadores.lista[i].nombre} -  <small>${listaJugadores.lista[i].puntos}</small></h1>
+            </div>
+            <div class="div-carta">
+    
+            </div>
         </div>
-        <div class="div-carta">
-
-        </div>
-    </div>
-    ` 
-       
-   }
+        ` 
+           
+       }
 
 }
 
@@ -80,12 +84,12 @@ const valorCarta = (carta) => {
 
 const determinarGanador = () => {
 
-    if (jugadoresDetenidos === listaJugadores.lista.length) {
+        if (jugadoresDetenidos === listaJugadores.lista.length) {
 
         let noPerdedores = listaJugadores.lista.filter(jugadores => jugadores.puntos <= 21),
             jugadores    = [],
             ganador;
-    
+
         for (let i = 0; i < noPerdedores.length; i++) {
             
             jugadores.push(noPerdedores[i].puntos);
@@ -96,24 +100,26 @@ const determinarGanador = () => {
 
         ganador = noPerdedores.find(elemento => elemento.puntos === jugadores[0]);
 
-        divGanador.classList.remove('hidden');
-
-        const puntajeGanador     = document.querySelector('h2'),
-              fraseGanador       = document.querySelector('.h1ganador');
-
-        fraseGanador.innerHTML = `El ganador es: ${ganador.nombre} <span class="red">¡Felicitaciones!</span>`;
-        puntajeGanador.innerText = `Con una puntuación de: ${ganador.puntos} puntos`;
-
-        btnPedir.disabled = true;
+        btnPedir.disabled   = true;
         btnDetener.disabled = true;
 
+        setTimeout(() => {
+
+            divGanador.classList.remove('hidden');
+
+            const puntajeGanador     = document.querySelector('h2'),
+                fraseGanador       = document.querySelector('.h1ganador');
+
+            fraseGanador.innerHTML = `El ganador es: ${ganador.nombre} <span class="red">¡Felicitaciones!</span>`;
+            puntajeGanador.innerText = `Con una puntuación de: ${ganador.puntos} puntos`;
+
+        }, 350);
+
     }
-    
+
 }
 
 btnPedir.addEventListener('click', () => {
-
-    console.log(turnoJugador);
 
     const puntosHTML = document.querySelectorAll('small');
     const divImg     = document.querySelectorAll('.div-carta');
@@ -127,51 +133,81 @@ btnPedir.addEventListener('click', () => {
 
     imgCarta.classList.add('carta');
 
-    for (const jugador of listaJugadores.lista) {
+    if (computadora === false) {
+
+        for (const jugador of listaJugadores.lista) {
         
-        if (jugador.turno === turnoJugador && jugador.detenido === false && jugador.puntos < 21) {
-
-            divImg[jugador.turno].append(imgCarta);
-            
-            listaJugadores.lista[jugador.turno].puntos += valor;
-
-            puntosHTML[jugador.turno].innerText = listaJugadores.lista[jugador.turno].puntos;
-
-            if (jugador.puntos > 21) {
+            if (jugador.turno === turnoJugador && jugador.detenido === false && jugador.puntos < 21) {
+    
+                divImg[jugador.turno].append(imgCarta);
                 
-                puntosHTML[jugador.turno].innerText += ' ¡Has perdido!';
-                listaJugadores.lista[turnoJugador].detenido = true;
-                jugadoresDetenidos++;
-
-            } else if (jugador.puntos === 21) {
-
-                puntosHTML[jugador.turno].classList.add('red');
-                puntosHTML[jugador.turno].innerText = `¡${listaJugadores.lista[jugador.turno].puntos}!`
-                listaJugadores.lista[turnoJugador].detenido = true;
-                jugadoresDetenidos++;
+                listaJugadores.lista[jugador.turno].puntos += valor;
+    
+                puntosHTML[jugador.turno].innerText = listaJugadores.lista[jugador.turno].puntos;
+    
+                if (jugador.puntos > 21) {
+                    
+                    puntosHTML[jugador.turno].innerText += ' ¡Has perdido!';
+                    listaJugadores.lista[turnoJugador].detenido = true;
+                    jugadoresDetenidos++;
+    
+                } else if (jugador.puntos === 21) {
+    
+                    puntosHTML[jugador.turno].classList.add('red');
+                    puntosHTML[jugador.turno].innerText = `¡${listaJugadores.lista[jugador.turno].puntos}!`
+                    listaJugadores.lista[turnoJugador].detenido = true;
+                    jugadoresDetenidos++;
+                    
+                }
+    
+                break;
                 
+            } else if (jugador.turno === turnoJugador && jugador.detenido === true) {
+    
+                (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
+                                                                 : turnoJugador = 0;
+    
+            } else if (jugador.turno === turnoJugador && jugador.puntos > 21) {
+    
+                (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
+                                                                 : turnoJugador = 0;
+    
+            } else if (jugador.turno === turnoJugador && jugador.puntos === 21) {
+
+                (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
+                                                                 : turnoJugador = 0;
+
             }
+    
+        }
+    
+        (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
+                                                         : turnoJugador = 0;
 
-            break;
+        determinarGanador();
+        
+    } else {
+
+        divImg[0].append(imgCarta);
+                
+        listaJugadores.lista[0].puntos += valor;
+    
+        puntosHTML[0].innerText = listaJugadores.lista[0].puntos;
+        
+        if (listaJugadores.lista[0].puntos === 21) {
             
-        } else if (jugador.turno === turnoJugador && jugador.detenido === true) {
+            puntosHTML[jugador.turno].classList.add('red');
+            puntosHTML[jugador.turno].innerText = `¡${listaJugadores.lista[jugador.turno].puntos}!`
 
-            (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
-                                                             : turnoJugador = 0;
+        }
+            
+        if (listaJugadores.lista[0].puntos > 21 || listaJugadores.lista[0].detenido === true) {
 
-        } else if (jugador.turno === turnoJugador && jugador.puntos > 21) {
-
-            (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
-                                                             : turnoJugador = 0;
-
+           turnoComputadora(listaJugadores.lista[0].puntos);
+          
         }
 
     }
-
-    (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
-                                                     : turnoJugador = 0;
-
-    determinarGanador();
 
 })
 
@@ -179,28 +215,121 @@ btnDetener.addEventListener('click', () => {
 
     const jugadorDetenidoHTML = document.querySelectorAll('small');
 
-    if (listaJugadores.lista[turnoJugador].detenido === false) {
+    if (computadora === false) {
+
+        if (listaJugadores.lista[turnoJugador].detenido === false) {
     
-        jugadorDetenidoHTML[turnoJugador].innerText += ' (Detenido)';
-        jugadoresDetenidos++;
+            jugadorDetenidoHTML[turnoJugador].innerText += ' (Detenido)';
+            jugadoresDetenidos++;
+        
+        } else {
     
+            alert(`${listaJugadores.lista[turnoJugador].nombre} está detenido, el siguiente turno es de ${listaJugadores.lista[turnoJugador + 1].nombre}, ten esto en cuenta para seguir con el juego :) `);
+            //While para arreglar el bug
+            
+        }
+    
+        listaJugadores.lista[turnoJugador].detenido = true;
+    
+        (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
+                                                         : turnoJugador = 0;
+
+        determinarGanador();
+    
+        
     } else {
 
-        alert(`${listaJugadores.lista[turnoJugador].nombre} está detenido, por favor presiona "Detener" nuevamente para seguir con el juego (hazlo hasta dar con el siguiente turno que no esté detenido :) )`);
+        jugadorDetenidoHTML[0].innerText += ' (Detenido)';
+        listaJugadores.lista[0].detenido = true;
+        turnoComputadora(listaJugadores.lista[0].puntos);
         
     }
-
-    listaJugadores.lista[turnoJugador].detenido = true;
-
-    (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
-                                                     : turnoJugador = 0;
-
-    determinarGanador();
 
 })
 
 btnNuevo.addEventListener('click', () => {
 
     location.reload();
+
+})
+
+btnNuevoFinal.addEventListener('click', () => {
+
+    location.reload();
+
+})
+
+export const activarComputadora = () => {
+
+    computadora = true;
+    const turnoComputadora = new Computadora;
+    listaJugadores.nuevoJugador(turnoComputadora);
+
+}
+
+const turnoComputadora = (puntosMinimos) => {
+
+    do {
+
+        const puntosHTML = document.querySelectorAll('small');
+        const divImg     = document.querySelectorAll('.div-carta');
+    
+        const carta = pedirCarta(),
+              valor = valorCarta(carta);
+    
+        const imgCarta = document.createElement('img');
+    
+        imgCarta.src = `assets/cartas/${carta}.png`;
+    
+        imgCarta.classList.add('carta');
+
+        divImg[1].append(imgCarta);
+
+        listaJugadores.lista[1].puntos += valor;
+
+        puntosHTML[1].innerText = listaJugadores.lista[1].puntos;
+
+        if (puntosMinimos > 21) break;
+        
+    } while (listaJugadores.lista[1].puntos <= 21 && puntosMinimos > listaJugadores.lista[1].puntos);
+
+    btnPedir.disabled   = true;
+    btnDetener.disabled = true;
+
+    setTimeout(() => {
+
+        divGanador.classList.remove('hidden');
+
+        const puntajeGanador     = document.querySelector('h2'),
+            fraseGanador       = document.querySelector('.h1ganador');
+
+        if (listaJugadores.lista[1].puntos > 21) {
+
+            fraseGanador.innerHTML = `¡Ganaste! <span class="red">¡Felicitaciones!</span>`;
+            puntajeGanador.innerText = `Con una puntuación de: ${listaJugadores.lista[0].puntos} puntos`;
+
+        } else if (listaJugadores.lista[1].puntos <= 21 && listaJugadores.lista[1].puntos > puntosMinimos) {
+
+            fraseGanador.innerHTML = `¡Ganó la computadora! ¡Vuelve a intentarlo!`;
+            puntajeGanador.innerText = `Con una puntuación de: ${listaJugadores.lista[1].puntos} puntos`;
+
+        } else if(listaJugadores.lista[1].puntos === puntosMinimos) {
+
+            fraseGanador.innerHTML = `<span class="red">¡Empate!</span>`;
+            puntajeGanador.innerText = `Con una puntuación de: ${listaJugadores.lista[0].puntos} puntos`;
+
+        } else if (puntosMinimos > 21) { 
+            
+            fraseGanador.innerHTML = `¡Ganó la computadora! ¡Vuelve a intentarlo!`;
+            puntajeGanador.innerText = `Con una puntuación de: ${listaJugadores.lista[1].puntos} puntos`;
+
+        }
+
+    }, 350);
+
+}
+btnCerrarModal.addEventListener('click', () => {
+
+    divGanador.classList.add('hidden');
 
 })

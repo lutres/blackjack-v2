@@ -1,7 +1,8 @@
 import _ from "underscore";
 import { Jugador } from "../classes/jugador-class";
 import {listaJugadores} from '../index'
-import { aggJugadorHTML, crearDeck } from "./juego";
+import { activarComputadora, aggJugadorHTML, crearDeck, turnoComputadora } from "./juego";
+
 
 const jug1 = document.querySelector('#uno'),
       jug2 = document.querySelector('#dos'),
@@ -20,7 +21,7 @@ const divLogin         = document.querySelector('.div-login'),
       btnConfirmar     = document.querySelector('#confirmar');
 
 let cantidadJugadores = 0,
-    turno             = 0;
+    turno = 0;
 
 btnConfirmar.disabled = true;
 btnModificar.disabled = true;
@@ -140,7 +141,12 @@ btnModificar.addEventListener('click', () => {
 
 btnConfirmar.addEventListener('click', () => {
 
-    // divLogin.classList.add('hidden');
+    if (cantidadJugadores === 1) {
+
+        activarComputadora();
+        
+    }
+
     aggJugadorHTML();
     crearDeck();
     divLogin.classList.add('hidden');

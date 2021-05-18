@@ -10,3 +10,14 @@ export class Jugador {
     }
 
 }
+export class Computadora {
+
+    constructor() {
+
+        this.nombre   = 'Computadora';
+        this.activo   = false;
+        this.detenido = false;
+        this.puntos   = 0;
+
+    }
+}
