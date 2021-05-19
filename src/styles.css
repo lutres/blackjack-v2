@@ -73,19 +73,22 @@ button {
     line-height: 1.5;
     border-radius: .25rem;
 }
-#btnPedir {
+#btnPedir, #btnDetener {
     background-color: whitesmoke;
     color: #1d1d1d;
 }
-.btnNuevo {
+#btnReiniciarFinal {
+    border: #1d1d1d solid 1px;
+    background-color: whitesmoke;
+}
+#btnReiniciarFinal:hover {
+    background-color: lightgrey;
+}
+.btnNuevo, #btnReiniciar {
     background-color: #1d1d1d;
     color: whitesmoke;
 }
-#btnDetener {
-    background-color: whitesmoke;
-    color: #1d1d1d;
-}
-.btnNuevo:hover{
+.btnNuevo:hover, #btnReiniciar:hover{
     background-color: #252525;
 }
 #btnPedir:disabled, #btnDetener:disabled {
@@ -104,8 +107,8 @@ button {
     font-family: 'Alegreya Sans', sans-serif;
 }
 .div-botones {
-    width: fit-content;
     margin: 2% auto 0 auto;
+    width: fit-content;
 }
 .cartas-jugadores {
     width: 98%;
@@ -157,4 +160,7 @@ small {
  }
  #cerrar-modal {
      display: none;
+ }
+ .botonesFinal button {
+     margin: auto 0.2% auto 0.2%;
  }

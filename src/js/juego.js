@@ -1,5 +1,6 @@
 import {listaJugadores } from "..";
 import { Computadora } from "../classes/jugador-class";
+import { divLogin } from "./login"
 const _ = require('underscore');
 
 const divCartasJugadores = document.querySelector('.cartas-jugadores'),
@@ -8,7 +9,8 @@ const divCartasJugadores = document.querySelector('.cartas-jugadores'),
       btnDetener         = document.querySelector('#btnDetener'),
       btnNuevo           = document.querySelector('.btnNuevo'),
       btnNuevoFinal      = document.querySelector('#btnNuevoFinal'),
-      btnCerrarModal        = document.querySelector('#cerrar-modal');
+      btnReiniciar       = document.querySelectorAll('.btnReiniciar'),
+      btnCerrarModal     = document.querySelector('#cerrar-modal');
 
 let deck               = [],
     jugadoresDetenidos = 0,
@@ -96,24 +98,42 @@ const determinarGanador = () => {
             
         }
 
-        jugadores.sort(function(a, b){return b - a});
+        if (jugadores.length === 0) {
 
-        ganador = noPerdedores.find(elemento => elemento.puntos === jugadores[0]);
+            setTimeout(() => {
 
-        btnPedir.disabled   = true;
-        btnDetener.disabled = true;
+                divGanador.classList.remove('hidden');
+    
+                const puntajeGanador     = document.querySelector('h2'),
+                      fraseGanador       = document.querySelector('.h1ganador');
+    
+                fraseGanador.innerHTML   = `¡Nadie ganó!`;
+                puntajeGanador.innerText = `Todos los jugadores tienen más de 21 puntos`;
+    
+            }, 350);
+            
+        } else {
 
-        setTimeout(() => {
+            jugadores.sort(function(a, b){return b - a});
 
-            divGanador.classList.remove('hidden');
+            ganador = noPerdedores.find(elemento => elemento.puntos === jugadores[0]);
 
-            const puntajeGanador     = document.querySelector('h2'),
-                fraseGanador       = document.querySelector('.h1ganador');
+            btnPedir.disabled   = true;
+            btnDetener.disabled = true;
 
-            fraseGanador.innerHTML = `El ganador es: ${ganador.nombre} <span class="red">¡Felicitaciones!</span>`;
-            puntajeGanador.innerText = `Con una puntuación de: ${ganador.puntos} puntos`;
+            setTimeout(() => {
 
-        }, 350);
+                divGanador.classList.remove('hidden');
+
+                const puntajeGanador     = document.querySelector('h2'),
+                    fraseGanador       = document.querySelector('.h1ganador');
+
+                fraseGanador.innerHTML   = `El ganador es: ${ganador.nombre} <span class="red">¡Felicitaciones!</span>`;
+                puntajeGanador.innerText = `Con una puntuación de: ${ganador.puntos} puntos`;
+
+            }, 350);
+
+        }
 
     }
 
@@ -224,8 +244,15 @@ btnDetener.addEventListener('click', () => {
         
         } else {
     
-            alert(`${listaJugadores.lista[turnoJugador].nombre} está detenido, el siguiente turno es de ${listaJugadores.lista[turnoJugador + 1].nombre}, ten esto en cuenta para seguir con el juego :) `);
-            //While para arreglar el bug
+            do {
+
+                (turnoJugador < listaJugadores.lista.length - 1) ? turnoJugador ++
+                                                                 : turnoJugador = 0;
+                
+            } while (listaJugadores.lista[turnoJugador].detenido === true);
+
+            jugadorDetenidoHTML[turnoJugador].innerText += ' (Detenido)';
+            jugadoresDetenidos++;
             
         }
     
@@ -250,12 +277,14 @@ btnDetener.addEventListener('click', () => {
 btnNuevo.addEventListener('click', () => {
 
     location.reload();
+    sessionStorage.clear();
 
 })
 
 btnNuevoFinal.addEventListener('click', () => {
 
     location.reload();
+    sessionStorage.clear();
 
 })
 
@@ -328,6 +357,30 @@ const turnoComputadora = (puntosMinimos) => {
     }, 350);
 
 }
+
+const reiniciarPartida = () => {
+
+    divCartasJugadores.innerHTML = '';
+    listaJugadores.cargarSessionStorage();
+    btnPedir.disabled   = false;
+    btnDetener.disabled = false;
+    aggJugadorHTML();
+
+}
+
+btnReiniciar[0].addEventListener('click', () => {
+
+    reiniciarPartida();
+
+})
+
+btnReiniciar[1].addEventListener('click', () => {
+
+    reiniciarPartida();
+    divGanador.classList.add('hidden');
+    
+})
+
 btnCerrarModal.addEventListener('click', () => {
 
     divGanador.classList.add('hidden');

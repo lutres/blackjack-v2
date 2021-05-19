@@ -12,13 +12,13 @@ const jug1 = document.querySelector('#uno'),
       jug6 = document.querySelector('#seis'),
       jug7 = document.querySelector('#siete');
 
-const divLogin         = document.querySelector('.div-login'),
-      txtInputJugador  = document.querySelector('#nombrejugador'),
-      lista            = document.querySelector('ul'),
-      divJugadoresHTML = document.querySelector('.listajugadores'),
-      divBotones       = document.querySelector('.div-botones'),
-      btnModificar     = document.querySelector('#modificar'),
-      btnConfirmar     = document.querySelector('#confirmar');
+export const divLogin         = document.querySelector('.div-login'),
+             txtInputJugador  = document.querySelector('#nombrejugador'),
+             lista            = document.querySelector('ul'),
+             divJugadoresHTML = document.querySelector('.listajugadores'),
+             divBotones       = document.querySelector('.div-botones'),
+             btnModificar     = document.querySelector('#modificar'),
+             btnConfirmar     = document.querySelector('#confirmar');
 
 let cantidadJugadores = 0,
     turno = 0;
@@ -34,7 +34,6 @@ const mostrarJugadorHTML = (jugador) => {
     `;
 
     lista.innerHTML += jugadorHTML;
-
     
 }
 
@@ -118,8 +117,6 @@ txtInputJugador.addEventListener('keyup', (event) => {
         txtInputJugador.value = '';
 
         turno++;
-
-        console.log(listaJugadores.lista);
 
         if (listaJugadores.lista.length === cantidadJugadores) {
 
