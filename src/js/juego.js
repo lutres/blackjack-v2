@@ -364,6 +364,9 @@ const reiniciarPartida = () => {
     listaJugadores.cargarSessionStorage();
     btnPedir.disabled   = false;
     btnDetener.disabled = false;
+    jugadoresDetenidos  = 0;
+    turnoJugador        = 0;
+    crearDeck();
     aggJugadorHTML();
 
 }
