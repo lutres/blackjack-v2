@@ -28,7 +28,7 @@ export const aggJugadorHTML = () => {
         `
         <div class="jugador">
             <div class="div-informacion">
-                <h1>${listaJugadores.lista[i].nombre} -  <small>${listaJugadores.lista[i].puntos}</small></h1>
+                <h1>${listaJugadores.lista[i].nombre}</h1><small>${listaJugadores.lista[i].puntos}</small>
             </div>
             <div class="div-carta">
     

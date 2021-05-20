@@ -99,12 +99,33 @@ button {
 }
 .carta {
     position: relative;
-    width: 95px;
+    width: 90px;
     margin-left: -60px;
 }
 .juego {
     width: 100%;
+    font-size: 15px;
     font-family: 'Alegreya Sans', sans-serif;
+}
+.jugador {
+    display: grid;
+    grid-template-rows: 30% 123px;
+    grid-gap: 5%;
+}
+.div-informacion {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+.div-informacion > h1 {
+    margin: 0;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.div-carta {
+    margin-left: 45px;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    height: fit-content;
 }
 .div-botones {
     margin: 2% auto 0 auto;
@@ -112,12 +133,13 @@ button {
 }
 .cartas-jugadores {
     width: 98%;
-    margin: -0.5% auto 0 auto;
+    margin: 2% auto 0 auto;
     display: block;
     /* border: solid black 1px; */
     text-align: center;
 }
 small {
+    font-size: 30px;
     color: whitesmoke;
 }
 .red {
@@ -163,4 +185,53 @@ small {
  }
  .botonesFinal button {
      margin: auto 0.2% auto 0.2%;
+ }
+
+ @media screen and (max-width: 768px) {
+    .carta {
+        width: 55px;
+        margin-left: -45px;
+    }
+    .juego {
+        width: 95%;
+        margin: 5% auto 0 auto;
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+    }
+    button {
+        border: 1px solid transparent;
+        padding: .2rem .35rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+    }
+    .div-botones {
+        width: fit-content;
+        position: absolute;
+        bottom: 3%;
+    }
+    .ganador {
+        width: 90%;
+    }
+    .jugador {
+        display: grid;
+        grid-template-rows: 40px 10px 120px;
+    }
+    .div-informacion {
+        display: grid;
+        grid-template-rows: 20px 20px;
+    }
+    .div-informacion > h1 {
+        margin: 0;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        font-size: 16px;
+    }
+    .div-carta {
+        margin-left: 45px;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        height: fit-content;
+    }
  }

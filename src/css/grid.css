@@ -1,5 +1,6 @@
 .cartas-jugadores {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    
+    height: 70vh;
+    grid-gap: 5%
 }
