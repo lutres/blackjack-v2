@@ -1,6 +1,7 @@
 .cartas-jugadores {
+    margin: 0 auto 0 auto;
+    width: 95%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 70vh;
-    grid-gap: 5%
+    justify-content: center;
 }

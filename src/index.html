@@ -16,23 +16,25 @@
 
     <div class="div-login">
         <div id="login">
-            <label for="numjugadores">Elige la cantidad de jugadores</label> <br>
             <div class="input" id="numjugadores">
-                <input type="radio" name="jugador" id="uno"> 1
-                <input type="radio" name="jugador" id="dos"> 2
-                <input type="radio" name="jugador" id="tres"> 3
-                <input type="radio" name="jugador" id="cuatro"> 4
-                <input type="radio" name="jugador" id="cinco" >5
-                <input type="radio" name="jugador" id="seis"> 6
-                <input type="radio" name="jugador" id="siete"> 7 <br> <br>
+                <label for="numjugadores">Elige la cantidad de jugadores</label> <br>
+                <div class="seleccion-jugador">
+                    <input type="radio" name="jugador" id="uno"> 1
+                    <input type="radio" name="jugador" id="dos"> 2
+                    <input type="radio" name="jugador" id="tres"> 3
+                    <input type="radio" name="jugador" id="cuatro"> 4
+                    <input type="radio" name="jugador" id="cinco" >5
+                    <input type="radio" name="jugador" id="seis"> 6
+                    <input type="radio" name="jugador" id="siete"> 7
+                </div>
             </div>
 
-            <label for="nombrejugadores">Ingresa el nombre de los jugadores</label> <br>
             <div class="input">
+                <label for="nombrejugadores">Ingresa el nombre de los jugadores</label> <br>
                 <input disabled type="text" name="nombrejugador" id="nombrejugador" placeholder="Jugador">
             </div>
 
-            <div class="listajugadores hidden input">
+            <div class="listajugadores input">
                 <p>Jugadores:</p>
                 <ul>
                 </ul>
