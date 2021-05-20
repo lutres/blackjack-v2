@@ -1,6 +1,7 @@
  html, body {
     background-color: #2F4F30;
     margin: 0;
+    font-family: 'Alegreya Sans', sans-serif;
  }
  .titulo {
     text-align: center;
@@ -11,7 +12,7 @@
     box-shadow: 0px 2px 5px black;
  }
  .div-login {
-    font-family: 'Alegreya Sans', sans-serif;
+    
     display: flex;
     justify-content: center;
 }
@@ -90,9 +91,6 @@ button {
     color: grey;
     cursor:auto;
 }
-.juego {
-    font-family: 'Alegreya Sans', sans-serif;
-}
 .div-botones {
     text-align: center;
     margin-top: 1%;
@@ -120,9 +118,6 @@ button {
 .carta {
     width: 90px;
     margin-left: -50px;
-}
-.div-ganador {
-    font-family: 'Alegreya Sans', sans-serif;
 }
 .ganador {
     width: fit-content;
